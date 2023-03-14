@@ -1,0 +1,8 @@
+
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+export PATH="/Users/lewisflude/Library/Python/3.9/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/lewisflude/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
