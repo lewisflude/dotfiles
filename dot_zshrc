@@ -9,3 +9,4 @@ export PATH="$PNPM_HOME:$PATH"
 
 eval "$(starship init zsh)"
 
+export EDITOR=/opt/homebrew/bin/hx
