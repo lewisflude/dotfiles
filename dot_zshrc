@@ -1,12 +1,45 @@
+# Initialize asdf
+. "$HOME/.asdf/asdf.sh"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-export PATH="/Users/lewisflude/Library/Python/3.9/bin:$PATH"
+# Set the Default Editor
+export EDITOR=/opt/homebrew/bin/hx
 
-# pnpm
-export PNPM_HOME="/Users/lewisflude/Library/pnpm"
+# Configure PNPM
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-# pnpm end
 
+# Initialize Starship prompt
 eval "$(starship init zsh)"
 
-export EDITOR=/opt/homebrew/bin/hx
+# Initialize GitHub Copilot aliases
+eval "$(github-copilot-cli alias -- "$0")"
+
+# Zsh Options and History Settings
+# Enable various Zsh options for enhanced functionality and history management
+setopt autocd correctall extendedglob extendedhistory globdots histignorealldups incappendhistory interactivecomments multios notify nullglob prompt_subst sharehistory
+
+# Directory Shortcuts
+# Define convenient aliases for frequently accessed directories
+alias docs="cd $HOME/Documents"
+alias proj="cd $HOME/Projects"
+
+# Error Handling and Notifications
+# Handle command not found errors and customize error handling or notifications if needed
+command_not_found_handler() {
+    echo "Command not found: $1" >&2
+    # Add your custom error handling or notification logic here
+}
+
+# Configuration for Auto-completion and Suggestions
+autoload -Uz compinit
+compinit
+
+# Set Default File Permissions
+umask 022
+
+# Source Additional Aliases
+# Include additional aliases defined in the .aliases file
+source "$HOME/.aliases"
+
+export FLYCTL_INSTALL="/Users/lewisflude/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"

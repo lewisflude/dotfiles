@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Shortcuts
+alias c='clear'
+alias ll='ls -alF'
+alias ..='cd ..'
+alias rg='rg --color=auto'
+
+# Git aliases
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gs='git status'
+alias gl='git log --oneline --decorate --graph'
+alias gp='git push'
+alias gpl='git pull'
+alias gb='git branch'
+alias gd='git diff'
+alias gds='git diff --staged'
+
+# Additional aliases
+alias la='ls -lAh'
+alias l='ls -CF'
+alias h='history'
+alias cdp='cd ~/Projects'
+alias dt='cd ~/Desktop'
+alias mv='mv -i'
+alias cp='cp -i'
+alias rm='rm -i'
+alias findf='find . -type f -name'
+alias findd='find . -type d -name'
+
+# Python 3 alias
+alias python='/usr/bin/python3'
+
+# Curl aliases
+alias ip='curl ifconfig.io'
+alias weather='curl wttr.in'
+
+# Ping aliases
+alias ping='sudo ping -c 5'
+
+# Netstat aliases
+alias ports='sudo netstat -tulanp'
+
+# Docker aliases
+alias dps='docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}"'
+alias dimages='docker images --format "{{.Repository}}\t{{.Tag}}\t{{.Size}}"'
+alias dclean='docker system prune -af'
+
+# Utility aliases
+alias clock='while sleep 1; do clear; echo -n "$(date +%T)"; done'
+alias calc='bc -l'
+alias now='date +"%Y-%m-%d %H:%M:%S"'
+alias startworkday='source ~/bin/start_workday.sh'
+alias docs='cd $HOME/Documents'
+alias proj='cd $HOME/Projects'

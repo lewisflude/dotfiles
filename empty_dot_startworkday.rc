@@ -1,0 +1,30 @@
+# ~/.startworkday.rc
+
+# Custom Dependencies (optional)
+custom_dependencies=("docker" "make" "pnpm" "git")
+
+# Custom Commands
+custom_commands=(
+  "git fetch"
+  "git rebase $git_branch"
+  "make nuke"
+  "pnpm install -f"
+  "make all"
+  "pnpm dev"
+)
+
+# Project Directory
+project_directory="$HOME/Code/translucent"
+
+# Git Branch
+git_branch="main"
+
+# Log File
+log_file="$HOME/Library/Logs/startworkday.log"
+
+# Debug Mode
+debug_mode=false
+
+
+# Timeout Duration (in seconds)
+timeout_duration=300
