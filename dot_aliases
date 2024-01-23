@@ -32,9 +32,6 @@ alias rm='rm -i'
 alias findf='find . -type f -name'
 alias findd='find . -type d -name'
 
-# Python 3 alias
-alias python='/usr/bin/python3'
-
 # Curl aliases
 alias ip='curl ifconfig.io'
 alias weather='curl wttr.in'
