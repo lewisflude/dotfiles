@@ -41,8 +41,6 @@ umask 022
 # Include additional aliases defined in the .aliases file
 source "$HOME/.aliases"
 
-export FLYCTL_INSTALL="/Users/lewisflude/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
