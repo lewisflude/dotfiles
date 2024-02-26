@@ -42,3 +42,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+eval "$(~/.local/bin/mise activate zsh)"
+
+export DENO_INSTALL="/Users/lewisflude/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
