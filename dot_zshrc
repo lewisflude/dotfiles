@@ -1,6 +1,3 @@
-# Set up asdf
-. $(brew --prefix asdf)/libexec/asdf.sh
-
 # Set the Default Editor
 export EDITOR=/opt/homebrew/bin/hx
 
@@ -11,38 +8,8 @@ export PATH="$PNPM_HOME:$PATH"
 # Initialize Starship prompt
 eval "$(starship init zsh)"
 
-# Zsh Options and History Settings
-# Enable various Zsh options for enhanced functionality and history management
-setopt autocd correctall extendedglob extendedhistory globdots histignorealldups incappendhistory interactivecomments multios notify nullglob prompt_subst sharehistory
-
-# Directory Shortcuts
-# Define convenient aliases for frequently accessed directories
-alias docs="cd $HOME/Documents"
-alias proj="cd $HOME/Projects"
-
-# Error Handling and Notifications
-# Handle command not found errors and customize error handling or notifications if needed
-command_not_found_handler() {
-    echo "Command not found: $1" >&2
-    # Add your custom error handling or notification logic here
-}
-
-# Configuration for Auto-completion and Suggestions
-autoload -Uz compinit
-compinit
-
-# Set Default File Permissions
-umask 022
-
 # Source Additional Aliases
 # Include additional aliases defined in the .aliases file
 source "$HOME/.aliases"
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 eval "$(~/.local/bin/mise activate zsh)"
-
-export DENO_INSTALL="/Users/lewisflude/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
