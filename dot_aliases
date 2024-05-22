@@ -78,5 +78,5 @@ fi
 
 # PNPM
 
-alias pn=pnpm
+alias pn='pnpm'
 
