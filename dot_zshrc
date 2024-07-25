@@ -1,0 +1,93 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# pnpm
+export PNPM_HOME="/Users/lewisflude/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+
+# ZSH settings
+setopt correct
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
+# fnm (Fast Node Manager)
+eval "$(fnm env --use-on-cd)"
+
+# Function to use .nvmrc files with fnm
+load-nvmrc() {
+  if [[ -n $POWERLEVEL9K_INSTANT_PROMPT ]]; then
+    return
+  fi
+  local node_version="$(fnm current)"
+  local nvmrc_path="$(pwd)/.nvmrc"
+  
+  if [ -f "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(cat "$nvmrc_path")
+    if [ "$nvmrc_node_version" != "$node_version" ]; then
+      fnm use "$nvmrc_node_version"
+      echo "Switched to Node $nvmrc_node_version"
+    fi
+  elif [ "$node_version" != "$(fnm default)" ]; then
+    fnm use default
+    echo "Reverted to default Node version"
+  fi
+}
+
+# Run load-nvmrc on directory change
+autoload -U add-zsh-hook
+add-zsh-hook chpwd load-nvmrc
+
+# Aliases
+alias zshconfig="code ~/.zshrc"
+alias update="brew update && brew upgrade && npm update -g"
+alias ip="curl ipinfo.io/ip"
+alias weather="curl wttr.in"
+
+# Utility functions
+function mkcd() {
+  mkdir -p "$@" && cd "$_";
+}
+
+# Colored man pages
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+# Syntax highlighting and autosuggestions
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Powerlevel10k
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# iTerm2 shell integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Docker completion (only in interactive shell)
+if [[ $- == *i* ]] && command -v docker >/dev/null 2>&1; then
+  autoload -Uz compinit
+  compinit -i
+  source <(docker completion zsh)
+fi
+
+# Initial load of nvmrc
+load-nvmrc
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# pnpm
