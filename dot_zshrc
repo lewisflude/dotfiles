@@ -92,5 +92,4 @@ fi
 load-nvmrc
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# pnpm
+source <(fzf --zsh)
