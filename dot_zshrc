@@ -1,58 +1,47 @@
 # fnm (Fast Node Manager)
-eval "$(fnm env --use-on-cd)"
+if ! command -v fnm &>/dev/null; then
+  eval "$(fnm env --use-on-cd)"
+fi
 
 # Function to use .nvmrc files with fnm
 load-nvmrc() {
-  if [[ -n $POWERLEVEL9K_INSTANT_PROMPT ]]; then
-    return
-  fi
   local node_version="$(fnm current)"
   local nvmrc_path="$(pwd)/.nvmrc"
   
-  if [ -f "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(cat "$nvmrc_path")
-    if [ "$nvmrc_node_version" != "$node_version" ]; then
-      fnm use "$nvmrc_node_version"
-      echo "Switched to Node $nvmrc_node_version"
-    fi
-  elif [ "$node_version" != "$(fnm default)" ]; then
-    fnm use default
-    echo "Reverted to default Node version"
+  if [[ -f "$nvmrc_path" ]]; then
+    local nvmrc_node_version=$(<"$nvmrc_path")
+    [[ "$nvmrc_node_version" == "$node_version" ]] || {
+      fnm use "$nvmrc_node_version" && echo "Switched to Node $nvmrc_node_version"
+    }
+  elif [[ "$node_version" != "$(fnm default)" ]]; then
+    fnm use default && echo "Reverted to default Node version"
   fi
 }
 
-# Initial load of nvmrc
-load-nvmrc
-
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# pnpm
-export PNPM_HOME="/Users/lewisflude/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
+# Path Management
+export PNPM_HOME="$HOME/Library/pnpm"
+path+=("$PNPM_HOME")
 
-
-# ZSH settings
-setopt correct
+# ZSH Settings
+setopt appendhistory
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt appendhistory
 
 # Aliases
 alias zshconfig="code ~/.zshrc"
 alias update="brew update && brew upgrade && npm update -g"
-alias ip="curl ipinfo.io/ip"
-alias weather="curl wttr.in"
+alias ip="curl -s ipinfo.io/ip"
+alias weather="curl -s wttr.in"
 
-# Utility functions
-function mkcd() {
-  mkdir -p "$@" && cd "$_";
+# Utility Functions
+mkcd() {
+  mkdir -p "$1" && cd "$1"
 }
 
 # Colored man pages
@@ -65,28 +54,26 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # Set defaults
-export EDITOR="hx"
+export EDITOR=${EDITOR:-hx}
 
-# Syntax highlighting and autosuggestions
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Plugins
+autoload -Uz zsh-syntax-highlighting && zsh-syntax-highlighting
+autoload -Uz zsh-autosuggestions && zsh-autosuggestions
+autoload -Uz compinit && compinit -C
 
 # Powerlevel10k
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# iTerm2 shell integration
+# iTerm2 Integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Docker completion (only in interactive shell)
-if [[ $- == *i* ]] && command -v docker >/dev/null 2>&1; then
-  autoload -Uz compinit
-  compinit -i
+# Docker Completion
+if command -v docker >/dev/null 2>&1; then
   source <(docker completion zsh)
 fi
 
-
 # fzf
-source <(fzf --zsh)
+if command -v fzf >/dev/null 2>&1; then
+  source <(fzf --zsh)
+fi
