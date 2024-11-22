@@ -9,7 +9,7 @@
 	signingkey = B8BA3822496AE5C0
 [commit]
 	gpgsign = true
-[gpg "ssh"]
+[gpg]
 	program = gpg
 [alias]
     co = checkout
