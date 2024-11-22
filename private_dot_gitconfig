@@ -6,7 +6,7 @@
 [user]
 	name = Lewis Flude
 	email = lewis@lewisflude.com
-	signingkey = F7D4B13D9EB14556
+	signingkey = B8BA3822496AE5C0
 [commit]
 	gpgsign = true
 [gpg "ssh"]
