@@ -10,7 +10,7 @@
 [commit]
 	gpgsign = true
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+	program = gpg
 [alias]
     co = checkout
     br = branch
