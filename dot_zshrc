@@ -13,12 +13,10 @@ alias ip="curl -s ipinfo.io/ip"
 alias weather="curl -s wttr.in"
 
 # Plugins
+autoload -Uz compinit && compinit -C
+
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-autoload -Uz zsh-syntax-highlighting && zsh-syntax-highlighting
-autoload -Uz zsh-autosuggestions && zsh-autosuggestions
-autoload -Uz compinit && compinit -C
 
 # Powerlevel10k
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
