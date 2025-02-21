@@ -3,6 +3,16 @@
   config,
   ...
 }: {
+  home.shell = {
+    enableShellIntegration = true;
+  };
+
+  home.file = {
+    ".p10k.zsh" = {
+      source = ./lib/p10k.zsh;
+    };
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
