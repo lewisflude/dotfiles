@@ -7,10 +7,14 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/cache.nix
+    ./modules/theme.nix
     ./modules/desktop-environment.nix
     ./modules/gaming.nix
     ./modules/graphics.nix
     ./modules/media.nix
+    ./modules/boot.nix
+    ./modules/terminal.nix
+    ./modules/file-management.nix
     ./modules/networking.nix
     ./modules/virtualisation.nix
     ./modules/window-management.nix
