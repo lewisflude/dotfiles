@@ -1,5 +1,7 @@
-{ ...
-}: {
+{...}: {
+  imports = [
+    ./modules/sh.nix
+  ];
   nixpkgs = {
     config = {
       allowUnfree = true;
