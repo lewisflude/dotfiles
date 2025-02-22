@@ -1,6 +1,6 @@
-{pkgs, config, ...}: {
+{pkgs, config, inputs, ...}: {
   home.packages = with pkgs; [
-    inputs.catppuccin.packages.${pkgs.system}.default
+    inputs.catppuccin.packages.${system}.default
   ];
 
   home.sessionVariables = {

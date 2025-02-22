@@ -39,22 +39,11 @@
       ];
     };
   };
-  vscode = {
+  programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
       kamadorueda.alejandra
-      (pkgs.catppuccin-vsc.override {
-        accent = "mauve";
-        boldKeywords = true;
-        italicComments = true;
-        italicKeywords = true;
-        extraBordersEnabled = false;
-        workbenchMode = "default";
-        bracketMode = "rainbow";
-        colorOverrides = {};
-        customUIColors = {};
-      })
     ];
     userSettings = {
       "workbench.colorTheme" = "Catppuccin Mocha";

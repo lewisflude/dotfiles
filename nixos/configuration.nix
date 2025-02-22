@@ -19,6 +19,7 @@
     ./modules/virtualisation.nix
     ./modules/window-management.nix
     ./modules/version-control.nix
+    ./modules/sh.nix
   ];
 
   nixpkgs = {

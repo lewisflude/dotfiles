@@ -65,7 +65,7 @@
   programs.ags = {
     enable = true;
 
-    configDir = ./ags;
+    configDir = ./lib/ags;
     extraPackages = with pkgs; [
       inputs.ags.packages.${pkgs.system}.battery
       inputs.ags.packages.${pkgs.system}.hyprland
