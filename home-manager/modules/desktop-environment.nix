@@ -8,8 +8,10 @@
   imports = [ inputs.ags.homeManagerModules.default ];
 
   home.packages = with pkgs; [
-    inputs.ags.packages.${system}.io
-    inputs.astal.packages.${system}.astal3
+    ags.packages.${system}.io
+    astal.packages.${system}.astal3
+    fuzzel
+    mako
   ];
 
   programs.fuzzel = {

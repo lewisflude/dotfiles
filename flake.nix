@@ -6,7 +6,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
-       astal = {
+    astal = {
       url = "github:aylur/astal";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -16,29 +16,34 @@
     };
     catppuccin.url = "github:catppuccin/nix";
   };
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    catppuccin,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-  in {
-    nixosConfigurations = {
-      jupiter = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs outputs;
+  outputs =
+    { self
+    , nixpkgs
+    , home-manager
+    , catppuccin
+    , ...
+    } @ inputs:
+    let
+      inherit (self) outputs;
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    in
+    {
+      nixosConfigurations = {
+        jupiter = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [ ./nixos/configuration.nix ];
         };
-        modules = [./nixos/configuration.nix];
+      };
+      homeConfigurations = {
+        "lewis@jupiter" = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home-manager/home.nix
+            catppuccin.homeManagerModules.catppuccin
+          ];
+        };
       };
     };
-    homeConfigurations = {
-      "lewis@jupiter" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home-manager/home.nix catppuccin.homeManagerModules.catppuccin];
-      };
-    };
-  };
 }

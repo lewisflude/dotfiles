@@ -7,6 +7,8 @@
   home.packages = with pkgs; [
     nil
     nixpkgs-fmt
+    helix
+    vscode
   ];
 
   programs.helix = {
