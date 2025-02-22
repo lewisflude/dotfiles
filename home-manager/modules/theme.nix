@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: {
   home.packages = with pkgs; [
     inputs.catppuccin.packages.${pkgs.system}.default
   ];
+
+  home.sessionVariables = {
+    WALLPAPER_DIR = "${config.home.homeDirectory}/wallpapers";
+  };
 
   catppuccin = {
     flavor = "mocha";

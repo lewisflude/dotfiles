@@ -1,11 +1,15 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }: {
+
+  imports = [ inputs.ags.homeManagerModules.default ];
+  
   home.packages = with pkgs; [
-    inputs.ags.packages.${pkgs.system}.io
-    inputs.astal.packages.${pkgs.system}.astal3
+    inputs.ags.packages.${system}.io
+    inputs.astal.packages.${system}.astal3
   ];
 
   programs.fuzzel = {

@@ -4,6 +4,7 @@
   ];
 
   networking = {
+    hostName = "jupiter";
     networkmanager.enable = true;
     firewall = {
       enable = true;
