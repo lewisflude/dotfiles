@@ -1,13 +1,14 @@
 {...}: {
-  boot.loader.grub = {
+ boot.loader.grub = {
     enable = true;
     efiSupport = true;
-    device = "nodev";
-  };
-  boot.loader.efi = {
-    canTouchEfiVariables = true;
-    efiSysMountPoint = "/boot/EFI";
+    efiInstallAsRemovable = true;
+    zfsSupport = true;
+    mirroredBoots = [
+      { devices = ["nodev"]; path = "/boot"; }
+    ];
   };
 
   boot.supportedFilesystems = ["zfs"];
 }
+

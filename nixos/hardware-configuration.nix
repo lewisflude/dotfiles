@@ -23,12 +23,9 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/12CE-A600";
+    device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
-    options = [ "fmask=0022" "dmask=0022" ];
   };
-
-  swapDevices = [ ];
 
   networking.useDHCP = lib.mkDefault true;
   networking.hostId = "259378f7";

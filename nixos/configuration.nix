@@ -41,7 +41,7 @@
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
 
-  networking.hostName = "jupiter";
+  
 
   users.users = {
     lewis = {
