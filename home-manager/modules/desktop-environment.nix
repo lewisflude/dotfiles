@@ -6,7 +6,7 @@
 }: {
 
   imports = [ inputs.ags.homeManagerModules.default ];
-  
+
   home.packages = with pkgs; [
     inputs.ags.packages.${system}.io
     inputs.astal.packages.${system}.astal3
@@ -62,7 +62,7 @@
       };
     };
   };
-  ags = {
+  programs.ags = {
     enable = true;
 
     configDir = ./ags;

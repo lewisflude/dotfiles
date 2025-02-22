@@ -14,13 +14,13 @@
       url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
   };
   outputs = {
     self,
     nixpkgs,
     home-manager,
-    ags,
-    astal,
+    catppuccin,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -37,7 +37,7 @@
       "lewis@jupiter" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home-manager/home.nix];
+        modules = [./home-manager/home.nix catppuccin.homeManagerModules.catppuccin];
       };
     };
   };

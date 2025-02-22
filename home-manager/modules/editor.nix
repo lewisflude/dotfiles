@@ -66,6 +66,7 @@
       "catppuccin.bracketMode" = "rainbow";
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "nil";
+      "nix.formatterPath" = "nixpkgs-fmt";
     };
   };
 }
