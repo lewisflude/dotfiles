@@ -1,8 +1,7 @@
-{
-  inputs,
-  lib,
-  config,
-  ...
+{ inputs
+, lib
+, config
+, ...
 }: {
   imports = [
     ./hardware-configuration.nix
@@ -20,6 +19,7 @@
     ./modules/window-management.nix
     ./modules/version-control.nix
     ./modules/sh.nix
+    ./modules/ssh.nix
   ];
 
   nixpkgs = {
@@ -28,20 +28,22 @@
     };
   };
 
-  nix = let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
-    settings = {
-      experimental-features = "nix-command flakes";
-      flake-registry = "";
-      nix-path = config.nix.nixPath;
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        experimental-features = "nix-command flakes";
+        flake-registry = "";
+        nix-path = config.nix.nixPath;
+      };
+      channel.enable = false;
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
-    channel.enable = false;
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
 
-  
+
 
   users.users = {
     lewis = {
@@ -49,7 +51,7 @@
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
       ];
-      extraGroups = ["wheel"];
+      extraGroups = [ "wheel" ];
     };
   };
 
