@@ -21,6 +21,7 @@
     ./modules/version-control.nix
     ./modules/sh.nix
     ./modules/ssh.nix
+    ./modules/zfs.nix
   ];
 
   nixpkgs = {
