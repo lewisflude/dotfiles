@@ -1,8 +1,8 @@
-{ ... }: {
+{ config, ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
-    package = none;
-    portalPackage = none;
+    package = null;
+    portalPackage = null;
     systemd.enable = true;
     settings = {
       # Monitor configuration

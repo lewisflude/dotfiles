@@ -25,7 +25,7 @@
     } @ inputs:
     let
       inherit (self) outputs;
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      system = "x86_64-linux";
     in
     {
       nixosConfigurations = {
@@ -38,6 +38,7 @@
       };
       homeConfigurations = {
         "lewis@jupiter" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/home.nix

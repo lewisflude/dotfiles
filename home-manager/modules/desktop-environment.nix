@@ -1,15 +1,14 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
+{ config
+, inputs
+, pkgs
+, ...
 }: {
 
   imports = [ inputs.ags.homeManagerModules.default ];
 
   home.packages = with pkgs; [
-    ags.packages.${system}.io
-    astal.packages.${system}.astal3
+    inputs.ags.packages.${system}.io
+    inputs.astal.packages.${system}.astal3
     fuzzel
     mako
   ];
@@ -107,7 +106,7 @@
     enable = true;
     settings = {
       ipc = true;
-      preload = ["${config.home.sessionVariables.WALLPAPER_DIR}/lighthouse.png"];
+      preload = [ "${config.home.sessionVariables.WALLPAPER_DIR}/lighthouse.png" ];
       wallpaper = ",${config.home.sessionVariables.WALLPAPER_DIR}/lighthouse.png";
       "wallpaper DP-1,fit" = "${config.home.sessionVariables.WALLPAPER_DIR}/lighthouse.png";
     };

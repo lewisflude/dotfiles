@@ -1,4 +1,4 @@
-{ ...}: {
+{ ... }: {
   imports = [
     ./modules/sh.nix
     ./modules/browser.nix
