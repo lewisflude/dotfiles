@@ -51,6 +51,7 @@
     lewis = {
       initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
+      shell = pkgs.zsh;
       description = "Lewis Flude";
       openssh.authorizedKeys.keys = [
       ];
