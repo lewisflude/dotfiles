@@ -1,6 +1,7 @@
 { inputs
 , lib
 , config
+, pkgs
 , ...
 }: {
   imports = [
@@ -44,14 +45,16 @@
     };
 
 
+  users.defaultUserShell = pkgs.zsh;
 
   users.users = {
     lewis = {
       initialPassword = "correcthorsebatterystaple";
       isNormalUser = true;
+      description = "Lewis Flude";
       openssh.authorizedKeys.keys = [
       ];
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "networkmanager" "docker" ];
     };
   };
 
