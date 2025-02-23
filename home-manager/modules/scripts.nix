@@ -29,19 +29,4 @@
       home-manager generations | head -n 1
     '')
   ];
-
-  # Optional: Add shell aliases for even quicker access
-  programs.bash.shellAliases = {
-    update = "system-update";
-  };
-
-  # If you use Fish shell
-  programs.fish.shellAliases = {
-    update = "system-update";
-  };
-
-  # If you use Zsh
-  programs.zsh.shellAliases = {
-    update = "system-update";
-  };
 }

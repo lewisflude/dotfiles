@@ -1,7 +1,6 @@
-{
-  pkgs,
-  config,
-  ...
+{ pkgs
+, config
+, ...
 }: {
   home.shell = {
     enableShellIntegration = true;
@@ -22,7 +21,7 @@
     shellAliases = {
       ll = "ls -l";
       edit = "sudo -e";
-      update = "sudo nixos-rebuild switch";
+      update = "system-update";
     };
 
     history.save = 10000;
@@ -30,7 +29,7 @@
     history.size = 10000;
     history.ignoreAllDups = true;
     history.path = "${config.home.homeDirectory}/.zsh_history";
-    history.ignorePatterns = ["rm *" "pkill *" "cp *"];
+    history.ignorePatterns = [ "rm *" "pkill *" "cp *" ];
     plugins = [
       {
         # will source zsh-autosuggestions.plugin.zsh
