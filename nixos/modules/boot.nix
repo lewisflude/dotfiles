@@ -10,6 +10,5 @@
   };
 
   boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.enableUnstable = true;
 }
 
