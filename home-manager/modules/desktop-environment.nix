@@ -82,6 +82,7 @@
   services.mako.enable = true;
 
   services.hypridle = {
+    enable = true;
     settings = {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
