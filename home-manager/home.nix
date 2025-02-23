@@ -8,6 +8,7 @@
     ./modules/terminal.nix
     ./modules/theme.nix
     ./modules/window-manager.nix
+    ./modules/scripts.nix
   ];
   nixpkgs = {
     config = {
