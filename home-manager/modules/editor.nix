@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.sessionVariables = {
     EDITOR = "hx";
     SUDO_EDITOR = "hx";
@@ -26,9 +26,9 @@
           name = "nix";
           scope = "source.nix";
           injection-regex = "nix";
-          file-types = ["nix"];
+          file-types = [ "nix" ];
           comment-token = "#";
-          language-servers = ["nil"];
+          language-servers = [ "nil" ];
           indent = {
             tab-width = 2;
             unit = "  ";
@@ -43,21 +43,23 @@
   };
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-      kamadorueda.alejandra
-    ];
-    userSettings = {
-      "workbench.colorTheme" = "Catppuccin Mocha";
-      "catppuccin.accentColor" = "mauve";
-      "catppuccin.boldKeywords" = true;
-      "catppuccin.italicComments" = true;
-      "catppuccin.italicKeywords" = true;
-      "catppuccin.workbenchMode" = "default";
-      "catppuccin.bracketMode" = "rainbow";
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "nil";
-      "nix.formatterPath" = "nixpkgs-fmt";
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
+        jnoortheen.nix-ide
+        kamadorueda.alejandra
+      ];
+      userSettings = {
+        "workbench.colorTheme" = "Catppuccin Mocha";
+        "catppuccin.accentColor" = "mauve";
+        "catppuccin.boldKeywords" = true;
+        "catppuccin.italicComments" = true;
+        "catppuccin.italicKeywords" = true;
+        "catppuccin.workbenchMode" = "default";
+        "catppuccin.bracketMode" = "rainbow";
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nil";
+        "nix.formatterPath" = "nixpkgs-fmt";
+      };
     };
   };
 }
