@@ -9,6 +9,7 @@
     ];
   };
 
+  boot.zfs.extraPools = [ "mpool" "bpool" ];
   boot.supportedFilesystems = [ "zfs" ];
 }
 
