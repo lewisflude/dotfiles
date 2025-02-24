@@ -1,4 +1,9 @@
 { pkgs, ... }: {
+  environment.systemPackages = with pkgs; [
+    ffmpeg-full
+    pavucontrol
+  ];
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true; # if not already enabled
