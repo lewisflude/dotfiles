@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     steam
     lutris
+    protonup-qt
   ];
 
   programs.steam = {

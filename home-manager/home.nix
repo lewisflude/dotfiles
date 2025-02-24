@@ -1,14 +1,6 @@
 { ... }: {
   imports = [
-    ./modules/sh.nix
-    ./modules/browser.nix
-    ./modules/desktop-environment.nix
-    ./modules/editor.nix
-    ./modules/password-management.nix
-    ./modules/terminal.nix
-    ./modules/theme.nix
-    ./modules/window-manager.nix
-    ./modules/scripts.nix
+    ./modules/default.nix
   ];
   nixpkgs = {
     config = {

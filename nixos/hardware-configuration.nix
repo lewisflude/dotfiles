@@ -27,17 +27,6 @@
     fsType = "vfat";
   };
 
-
-  fileSystems."/mpool" = {
-    device = "mpool";
-    fsType = "zfs";
-  };
-
-  fileSystems."/bpool" = {
-    device = "bpool";
-    fsType = "zfs";
-  };
-
   networking.useDHCP = lib.mkDefault true;
   networking.hostId = "259378f7";
 
