@@ -5,7 +5,6 @@
     ffmpeg-full
     pavucontrol
   ];
-  users.users.lewis.extraGroups = [ "audio" ];
   musnix.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
