@@ -5,5 +5,7 @@
     wget
     curl
     kitty
+    comma
+    devenv
   ];
 }

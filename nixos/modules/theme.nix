@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     magnetic-catppuccin-gtk
     catppuccin-cursors.mochaMauve
@@ -12,4 +12,10 @@
     XCURSOR_SIZE = 16;
     GTK_THEME = "Catppuccin-GTK-Dark";
   };
+
+  catppuccin = {
+    flavor = "mocha";
+    enable = true;
+  };
+
 }

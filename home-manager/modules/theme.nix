@@ -1,4 +1,4 @@
-{pkgs, config, inputs, ...}: {
+{ pkgs, config, inputs, ... }: {
   home.packages = with pkgs; [
     inputs.catppuccin.packages.${system}.default
   ];
@@ -10,6 +10,7 @@
   catppuccin = {
     flavor = "mocha";
     enable = true;
+    cursors.enable = true;
   };
 
   gtk = {
@@ -31,5 +32,6 @@
         gtk-application-prefer-dark-theme=1
       '';
     };
+
   };
 }

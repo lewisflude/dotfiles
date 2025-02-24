@@ -1,9 +1,12 @@
 { pkgs, ... }: {
+
+
   environment.systemPackages = with pkgs; [
     ffmpeg-full
     pavucontrol
   ];
-
+  users.users.lewis.extraGroups = [ "audio" ];
+  musnix.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true; # if not already enabled

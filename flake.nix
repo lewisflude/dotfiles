@@ -15,6 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
+    musnix = { url = "github:musnix/musnix"; };
   };
   outputs =
     { self
@@ -33,7 +34,11 @@
           specialArgs = {
             inherit inputs outputs;
           };
-          modules = [ ./nixos/configuration.nix ];
+          modules = [
+            ./nixos/configuration.nix
+            catppuccin.nixosModules.catppuccin
+            inputs.musnix.nixosModules.musnix
+          ];
         };
       };
       homeConfigurations = {
