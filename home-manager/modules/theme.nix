@@ -2,7 +2,6 @@
   home.packages = with pkgs; [
     inputs.catppuccin.packages.${system}.default
     magnetic-catppuccin-gtk
-    catppuccin-cursors.mochaMauve
     nwg-look
   ];
 

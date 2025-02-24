@@ -2,6 +2,7 @@
 
   home.packages = with pkgs; [
     hyprpolkitagent
+    hyprshot
   ];
 
   wayland.windowManager.hyprland = {
@@ -184,6 +185,11 @@
           # Workspace switching with mouse
           "$mod, mouse_down, workspace, e+1"
           "$mod, mouse_up, workspace, e-1"
+
+          # Hyprshot
+          "$mod, PRINT, exec, hyprshot -m window"
+          "Print, exec, hyprshot -m output"
+          "$mod, Shift, PRINT, exec, hyprshot -m region"
         ]
         ++ (
           # workspaces
