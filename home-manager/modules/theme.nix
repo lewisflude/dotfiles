@@ -10,7 +10,6 @@
   home.sessionVariables = {
     WALLPAPER_DIR = "${config.home.homeDirectory}/wallpapers";
     HYPRCURSOR_THEME = "catppuccin-mocha-mauve-cursors";
-    HYPRCURSOR_SIZE = 16;
     XCURSOR_THEME = "catppuccin-mocha-mauve-cursors";
     XCURSOR_SIZE = 16;
     GTK_THEME = "Catppuccin-GTK-Dark";
@@ -42,6 +41,5 @@
         gtk-application-prefer-dark-theme=1
       '';
     };
-
   };
 }

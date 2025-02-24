@@ -118,9 +118,9 @@
     enable = true;
     settings = {
       ipc = true;
-      preload = [ "${config.home.sessionVariables.WALLPAPER_DIR}/lighthouse.png" ];
-      wallpaper = ",${config.home.sessionVariables.WALLPAPER_DIR}/lighthouse.png";
-      "wallpaper DP-1,fit" = "${config.home.sessionVariables.WALLPAPER_DIR}/lighthouse.png";
+      preload = [ "${config.home.sessionVariables.WALLPAPER_DIR}/nix-black-4k.png" ];
+      wallpaper = ",${config.home.sessionVariables.WALLPAPER_DIR}/nix-black-4k.png";
+      "wallpaper DP-1,fit" = "${config.home.sessionVariables.WALLPAPER_DIR}/nix-black-4k.png";
     };
   };
 }
