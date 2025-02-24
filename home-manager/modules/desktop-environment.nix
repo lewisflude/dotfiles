@@ -13,6 +13,17 @@
     mako
   ];
 
+  programs.hyprlock = {
+    enable = true;
+    settings = { };
+    extraConfig = "source=${
+        builtins.fetchurl {
+          url = "https://raw.githubusercontent.com/catppuccin/hyprlock/refs/heads/main/hyprlock.conf";
+          sha256 = "1w02cnmi2ikrsnhq7raf0cvnsg0rv9nvaym19xhgbca4j03g0rbx";
+        }
+      }";
+  };
+
   programs.fuzzel = {
     enable = true;
     settings = {
