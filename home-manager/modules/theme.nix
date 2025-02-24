@@ -1,10 +1,20 @@
 { pkgs, config, inputs, ... }: {
   home.packages = with pkgs; [
     inputs.catppuccin.packages.${system}.default
+    magnetic-catppuccin-gtk
+    catppuccin-cursors.mochaMauve
+    nwg-look
   ];
+
 
   home.sessionVariables = {
     WALLPAPER_DIR = "${config.home.homeDirectory}/wallpapers";
+    HYPRCURSOR_THEME = "catppuccin-mocha-mauve-cursors";
+    HYPRCURSOR_SIZE = 16;
+    XCURSOR_THEME = "catppuccin-mocha-mauve-cursors";
+    XCURSOR_SIZE = 16;
+    GTK_THEME = "Catppuccin-GTK-Dark";
+
   };
 
   catppuccin = {

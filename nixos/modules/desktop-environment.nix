@@ -33,7 +33,7 @@
   services.greetd = {
     settings = {
       default_session = {
-        command = "dbus-run-ression ${pkgs.hyprland}/bin/Hyprland";
+        command = "dbus-run-session ${pkgs.hyprland}/bin/Hyprland";
         user = "lewis";
       };
     };

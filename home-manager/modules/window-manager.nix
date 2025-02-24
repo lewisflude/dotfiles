@@ -1,4 +1,9 @@
-{ config, ... }: {
+{ pkgs, config, ... }: {
+
+  home.packages = with pkgs; [
+    hyprpolkitagent
+  ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;

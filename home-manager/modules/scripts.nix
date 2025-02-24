@@ -5,7 +5,7 @@
       #!/bin/sh
       set -e # Exit on error
 
-      FLAKE_PATH="$HOME/.dotfiles"
+      FLAKE_PATH="${config.home.homeDirectory}/.dotfiles"
       
       echo "🔄 Updating flake inputs..."
       nix flake update --flake "$FLAKE_PATH"
