@@ -28,8 +28,8 @@
       echo "Current home-manager generation:"
       home-manager generations | head -n 1
     '')
-    (writeShellScriptBit "link-pipewire-nodes" ''
-      i#!/usr/bin/env bash
+    (writeShellScriptBin "link-pipewire-nodes" ''
+      #!/usr/bin/env bash
 
       # ports obtained from `pw-link -io`
 
