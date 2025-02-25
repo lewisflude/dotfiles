@@ -1,12 +1,12 @@
 @use "sass:color";
 
-$bg: #{"@theme_bg_color"};
-$fg: #{"@theme_fg_color"};
+$bg: #{"@theme_fg_color"};
+$fg: #{"@theme_bg_color"};
 $accent: #{"@theme_base_color"};
-$bg_selected: #{"@theme_selected_bg_color"};
-$fg_selected: #{"@theme_selected_fg_color"};
-$bg_unfocussed: #{"@theme_unfocused_bg_color"};
-$fg_unfocussed: #{"@theme_unfocused_fg_color"};
+$bg_selected: #{"@theme_selected_fg_color"};
+$fg_selected: #{"@theme_selected_bg_color"};
+$bg_unfocussed: #{"@theme_unfocused_fg_color"};
+$fg_unfocussed: #{"@theme_unfocused_bg_color"};
 
 $radius: 7px;
 
