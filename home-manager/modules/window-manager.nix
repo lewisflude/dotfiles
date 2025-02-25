@@ -161,7 +161,6 @@
           "$mod, Q, exec, kitty"
           "$mod, R, exec, fuzzel"
           "$mod, F, exec, firefox"
-          ", Print, exec, grimblast copy area"
           "$mod, V, exec,  kitty --class clipse -e 'clipse'"
 
           # From example config
@@ -188,7 +187,7 @@
 
           # Hyprshot
           "$mod, PRINT, exec, hyprshot -m window"
-          "Print, exec, hyprshot -m output"
+          "PRINT, exec, hyprshot -m output"
           "$mod, Shift, PRINT, exec, hyprshot -m region"
         ]
         ++ (
