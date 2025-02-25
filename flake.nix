@@ -18,6 +18,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
+    hyprpanel = {
+      url = "github:jas-singhfsu/hyprpanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     musnix = { url = "github:musnix/musnix"; };
   };
   outputs =
@@ -25,6 +29,7 @@
     , nixpkgs
     , home-manager
     , catppuccin
+    , hyprpanel
     , ...
     } @ inputs:
     let
@@ -46,11 +51,17 @@
       };
       homeConfigurations = {
         "lewis@jupiter" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [
+              inputs.hyprpanel.overlay
+            ];
+          };
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/home.nix
             catppuccin.homeManagerModules.catppuccin
+            hyprpanel.homeManagerModules.hyprpanel
           ];
         };
       };
