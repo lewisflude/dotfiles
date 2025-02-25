@@ -3,28 +3,86 @@
   home.packages = with pkgs; [
     (writeShellScriptBin "system-update" ''
       #!/bin/sh
+      # system-update: Fast NixOS system update script
+      # Usage: system-update [options]
+      #   --full      Do a complete update (flake update + GC)
+      #   --inputs    Update flake inputs
+      #   --gc        Run garbage collection
+      #   --help      Show this help
+
       set -e # Exit on error
 
       FLAKE_PATH="${config.home.homeDirectory}/.dotfiles"
-      
-      echo "🔄 Updating flake inputs..."
-      nix flake update --flake "$FLAKE_PATH"
-      
-      echo "⚙️ Building new system configuration..."
-      sudo nixos-rebuild switch --flake "$FLAKE_PATH"#jupiter
-      
-      echo "🏠 Updating home-manager configuration..."
-      home-manager switch --flake "$FLAKE_PATH"#lewis@jupiter
-      
-      echo "🧹 Running garbage collection..."
-      nix-collect-garbage -d
-      
+      UPDATE_INPUTS=0
+      RUN_GC=0
+      BUILD_ONLY=0
+
+      # Parse arguments
+      if [ $# -eq 0 ]; then
+        # Default behavior - no flake update, no GC
+        :
+      else
+        for arg in "$@"; do
+          case $arg in
+            --full)
+              UPDATE_INPUTS=1
+              RUN_GC=1
+              ;;
+            --inputs)
+              UPDATE_INPUTS=1
+              ;;
+            --gc)
+              RUN_GC=1
+              ;;
+            --build-only)
+              BUILD_ONLY=1
+              ;;
+            --help)
+              echo "Usage: system-update [options]"
+              echo "  --full       Do a complete update (flake update + GC)"
+              echo "  --inputs     Update flake inputs"
+              echo "  --gc         Run garbage collection"
+              echo "  --build-only Just build but don't activate"
+              echo "  --help       Show this help"
+              exit 0
+              ;;
+          esac
+        done
+      fi
+
+      # Update flake inputs only when requested
+      if [ $UPDATE_INPUTS -eq 1 ]; then
+        echo "🔄 Updating flake inputs..."
+        nix flake update --flake "$FLAKE_PATH"
+      fi
+
+      # Switch or build based on argument
+      if [ $BUILD_ONLY -eq 1 ]; then
+        echo "⚙️ Building system configuration (without activating)..."
+        sudo nixos-rebuild build --flake "$FLAKE_PATH"#jupiter
+  
+        echo "🏠 Building home-manager configuration (without activating)..."
+        home-manager build --flake "$FLAKE_PATH"#lewis@jupiter
+      else
+        echo "⚙️ Building and activating system configuration..."
+        sudo nixos-rebuild switch --flake "$FLAKE_PATH"#jupiter
+  
+        echo "🏠 Updating home-manager configuration..."
+        home-manager switch --flake "$FLAKE_PATH"#lewis@jupiter
+      fi
+
+      # Run garbage collection only when requested
+      if [ $RUN_GC -eq 1 ]; then
+        echo "🧹 Running garbage collection..."
+        nix-collect-garbage -d
+      fi
+
       echo "✨ System update complete!"
-      
+
       # Print current system and home-manager generations
       echo "Current system generation:"
       sudo nix-env -p /nix/var/nix/profiles/system --list-generations | tail -n 1
-      
+
       echo "Current home-manager generation:"
       home-manager generations | head -n 1
     '')
