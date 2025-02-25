@@ -1,5 +1,4 @@
-{ config
-, lib
+{ lib
 , modulesPath
 , ...
 }: {
@@ -29,6 +28,11 @@
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
   };
+  swapDevices = [
+    {
+      device = "/dev/disk/by-uuid/65835c4c-3b5f-4ced-bf61-c73a6e76e562";
+    }
+  ];
 
   networking.useDHCP = lib.mkDefault true;
   networking.hostId = "259378f7";
