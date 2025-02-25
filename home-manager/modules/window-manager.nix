@@ -187,8 +187,8 @@
 
           # Hyprshot
           "$mod, PRINT, exec, hyprshot -m window"
-          "PRINT, exec, hyprshot -m output"
-          "$mod, Shift, PRINT, exec, hyprshot -m region"
+          ", Print, exec, hyprshot -m region --clipboard-only"
+          "$mod, Shift, PRINT, exec, hyprshot -m region --clipboard-only"
         ]
         ++ (
           # workspaces
