@@ -24,7 +24,6 @@
       exec-once = [
         "hypridle"
         "clipse -listen"
-        "ags run ${config.home.homeDirectory}/.dotfiles/home-manager/modules/lib/ags"
         "systemctl --user enable --now hyprpolkitagent.service"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "hyprctl setcursor catppuccin-mocha-mauve-cursors 16"
