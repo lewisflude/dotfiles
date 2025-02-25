@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   systemd.user.services.nix-update = {
     description = "NixOS system update";
     path = [ pkgs.git pkgs.nix pkgs.home-manager ];
@@ -7,7 +7,7 @@
       ExecStart = "${pkgs.writeShellScript "nix-update-script" ''
         #!/bin/sh
         set -e
-        ${pkgs.sudo}/bin/sudo -E ${home.homeDirectory}/.dotfiles/home-manager/modules/scripts/bin/system-update --inputs
+        ${pkgs.sudo}/bin/sudo -E ${config.home.homeDirectory}/.dotfiles/home-manager/modules/scripts/bin/system-update --inputs
       ''}";
     };
   };
