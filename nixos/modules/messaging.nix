@@ -1,3 +1,3 @@
 { pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ telegram-desktop ];
+  environment.systemPackages = with pkgs; [ slack telegram-desktop vencord ];
 }
