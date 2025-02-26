@@ -18,19 +18,13 @@
       "$mod" = "SUPER";
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
-      "$menu" = "fuzzel";
+      "$menu" = "fuzzel --launch-prefix='uwsm app -- '";
 
       # Autostart programs
       exec-once = [
-        "hypridle"
-        "clipse -listen"
+        "systemctl --user enable --now hypridle.service"
         "systemctl --user enable --now hyprpolkitagent.service"
-        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "hyprctl setcursor catppuccin-mocha-mauve-cursors 16"
-        "gsettings set org.gnome.desktop.interface color-scheme prefer-dark"
-        "gsettings set org.gnome.desktop.interface gtk-theme 'Catppuccin-GTK-Dark'"
-        "gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'"
-        "gsettings set org.gnome.desktop.interface font-name 'JetBrains Mono 11'"
+        "clipse -listen"
       ];
 
       windowrulev2 = [
@@ -157,15 +151,15 @@
       bind =
         [
           # Your existing binds
-          "$mod, Q, exec, kitty"
-          "$mod, R, exec, fuzzel"
-          "$mod, F, exec, firefox"
-          "$mod, V, exec,  kitty --class clipse -e 'clipse'"
+          "$mod, Q, exec, uwsm app -- $terminal"
+          "$mod, R, exec, $menu"
+          "$mod, F, exec, uwsm app -- firefox"
+          "$mod, V, exec,  $terminal --class clipse -e 'clipse'"
 
           # From example config
           "$mod, C, killactive,"
           "$mod, M, exit,"
-          "$mod, E, exec, $fileManager"
+          "$mod, E, exec, uswm app -- $fileManager"
           # "$mod, V, togglefloating,"
           "$mod, P, pseudo,"
           "$mod, J, togglesplit," # dwindle

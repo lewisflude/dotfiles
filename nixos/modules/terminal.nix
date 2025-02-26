@@ -7,5 +7,12 @@
     kitty
     comma
     devenv
+    direnv
   ];
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    loadInNixShell = true;
+  };
 }

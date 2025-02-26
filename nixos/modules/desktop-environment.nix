@@ -31,12 +31,7 @@
   };
 
   services.greetd = {
-    settings = {
-      default_session = {
-        command = "dbus-run-session ${pkgs.hyprland}/bin/Hyprland";
-        user = "lewis";
-      };
-    };
+    enable = true;
   };
 
   programs.hyprlock.enable = true;

@@ -17,6 +17,9 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    initExtra = ''
+      eval "$(direnv hook zsh)"
+    '';
 
     shellAliases = {
       ll = "ls -l";
