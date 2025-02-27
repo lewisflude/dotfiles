@@ -4,6 +4,7 @@
       source = ./lib/u2f_keys;
     };
   };
+  services.yubikey-touch-detector.enable = true;
   programs.gpg = {
     enable = true;
     scdaemonSettings = {
