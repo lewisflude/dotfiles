@@ -28,6 +28,7 @@ in
         host = "gitlab.com github.com";
         user = "git";
         identityFile = [
+          "~/.ssh/id_auth"
           "~/.ssh/id_yubi"
         ];
       };
