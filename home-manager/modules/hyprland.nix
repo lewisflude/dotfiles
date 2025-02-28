@@ -1,8 +1,9 @@
-{ pkgs, config, ... }: {
+{ pkgs, inputs, ... }: {
 
   home.packages = with pkgs; [
     hyprpolkitagent
     hyprshot
+    nwg-dock-hyprland
   ];
 
   wayland.windowManager.hyprland = {
@@ -10,13 +11,17 @@
     package = null;
     portalPackage = null;
     systemd.enable = true;
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+    ];
     settings = {
       # Monitor configuration
       monitor = ",preferred,auto,auto";
 
       # Set common variables
       "$mod" = "SUPER";
-      "$terminal" = "kitty";
+      "$terminal" = "ghostty";
       "$fileManager" = "nautilus";
       "$menu" = "fuzzel --launch-prefix='uwsm app -- '";
 
@@ -24,6 +29,7 @@
       exec-once = [
         "systemctl --user enable --now hypridle.service"
         "systemctl --user enable --now hyprpolkitagent.service"
+        "uwsm app -- nwg-dock-hyprland"
         "clipse -listen"
       ];
 

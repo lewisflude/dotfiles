@@ -36,6 +36,8 @@
       menus.dashboard.shortcuts.left.shortcut3.icon = "";
       menus.dashboard.shortcuts.left.shortcut3.tooltip = "Vencord (Discord)";
       theme.bar.transparent = true;
+      theme.font.name = "Iosevka";
+      theme.font.size = "12pt";
     };
   };
 }

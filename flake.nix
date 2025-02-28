@@ -9,18 +9,25 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+    Hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
     astal = {
       url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ags = {
-      url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     catppuccin.url = "github:catppuccin/nix";
     hyprpanel = {
       url = "github:jas-singhfsu/hyprpanel";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
     };
     musnix = { url = "github:musnix/musnix"; };
   };
@@ -55,6 +62,9 @@
             inherit system;
             overlays = [
               inputs.hyprpanel.overlay
+              (final: prev: {
+                ghostty = inputs.ghostty.packages.${system}.default;
+              })
             ];
           };
           extraSpecialArgs = { inherit inputs outputs; };

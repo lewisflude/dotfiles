@@ -1,14 +1,10 @@
 { config
-, inputs
 , pkgs
 , ...
 }: {
 
-  imports = [ inputs.ags.homeManagerModules.default ];
 
   home.packages = with pkgs; [
-    inputs.ags.packages.${system}.io
-    inputs.astal.packages.${system}.astal3
     fuzzel
     mako
   ];
@@ -28,8 +24,8 @@
     enable = true;
     settings = {
       main = {
-        font = "JetBrains Mono:size=12";
-        terminal = "kitty";
+        font = "Iosevka:size=12";
+        terminal = "ghostty";
         layer = "overlay";
         width = 30;
         horizontal-pad = 20;
@@ -73,21 +69,6 @@
         page-next = "Page_Down";
       };
     };
-  };
-  programs.ags = {
-    enable = true;
-
-    configDir = ./lib/ags;
-    extraPackages = with pkgs; [
-      inputs.ags.packages.${pkgs.system}.battery
-      inputs.ags.packages.${pkgs.system}.hyprland
-      inputs.ags.packages.${pkgs.system}.mpris
-      inputs.ags.packages.${pkgs.system}.wireplumber
-      inputs.ags.packages.${pkgs.system}.network
-      inputs.ags.packages.${pkgs.system}.tray
-
-      fzf
-    ];
   };
 
   services.mako.enable = true;
