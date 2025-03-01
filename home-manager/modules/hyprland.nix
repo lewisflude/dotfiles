@@ -11,7 +11,7 @@
     dconf
   ];
 
-   imports = [
+  imports = [
     ./hyprland/default.nix
   ];
 
@@ -23,16 +23,16 @@
       enable = false;
       variables = [ "--all" ];
     };
+    xwayland.enable = true;
     plugins = [
       inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
     ];
     settings = {
-      monitor = ",preferred,auto,auto";
       "$mod" = "SUPER";
       "$terminal" = "ghostty";
       "$fileManager" = "nautilus";
       "$menu" = "fuzzel --launch-prefix='uwsm app -- '";
-    };     
+    };
   };
 }
 
