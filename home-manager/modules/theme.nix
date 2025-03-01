@@ -4,18 +4,19 @@
     nwg-look
     iosevka
     nerd-fonts.iosevka
+    gtk4
   ];
 
   home.pointerCursor = {
     name = "catppuccin-mocha-mauve-cursors";
     package = pkgs.catppuccin-cursors.mochaMauve;
-    size = 24;
+    size = 32;
     gtk = {
       enable = true;
     };
     hyprcursor = {
       enable = true;
-      size = 24;
+      size = 32;
     };
     x11 = {
       enable = true;

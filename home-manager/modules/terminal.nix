@@ -9,11 +9,40 @@
     devenv
     direnv
     ghostty
+    lsd
+    zoxide
+    rsync
+    trash-cli
+    bat
+    micro
+    ripgrep
+    fd
+    bottom
+    duf
+    ncdu
+    dust
+    glances
+    procs
+    doas
+    gping
+    mosh
+    aria2
+    networkmanager
+    tldr
+    mcfly
+    atool
+    pigz
+    fzf
+    jq
+    git-extras
+    lazygit
+    lazydocker
   ];
 
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    nix-direnv.enable = true;
   };
 
   programs.ghostty = {
@@ -22,14 +51,30 @@
     settings = {
       font-family = "Iosevka";
       font-size = 12;
-      background-opacity = 0.9;
       background-blur = true;
       shell-integration = "zsh";
-      shell-integration-features = true;
-      gtk-adwaita = true;
-      window-padding-x = 12;
-      window-padding-y = 12;
+      shell-integration-features = "cursor,sudo,title";
+      font-feature = "+calt,+liga,+dlig";
+      gtk-titlebar = true;
+      gtk-tabs-location = "top";
     };
+  };
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  programs.bat = {
+    enable = true;
+    config = {
+      italic-text = "always";
+    };
+  };
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  programs.ripgrep = {
+    enable = true;
   };
 }
 

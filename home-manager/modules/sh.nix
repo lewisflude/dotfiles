@@ -18,11 +18,20 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     initExtra = ''
+      eval "$(zoxide init zsh)"
       eval "$(direnv hook zsh)"
+      source "${pkgs.fzf}/share/fzf/key-bindings.zsh"
+      source "${pkgs.fzf}/share/fzf/completion.zsh"
+      eval "$(mcfly init zsh)"
+      export MANPAGER="sh -c 'col -bx | bat -l man -p'"
     '';
 
     shellAliases = {
-      ll = "ls -l";
+      ls = "lsd";
+      l = "ls -l";
+      la = "ls -a";
+      lla = "ls -la";
+      lt = "ls --tree";
       edit = "sudo -e";
       update = "system-update";
     };
