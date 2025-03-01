@@ -15,9 +15,43 @@
     wireplumber = {
       enable = true;
     };
+
     extraConfig.pipewire = {
-      "20-playback-split.conf" = {
-        "context.modules" = [{
+      "context.properties" = {
+        "link.max-buffers" = 16;
+        "log.level" = 2;
+        "default.clock.rate" = 48000;
+        "default.clock.allowed-rates" = [ 44100 48000 96000 ];
+        "default.clock.quantum" = 256;
+        "default.clock.min-quantum" = 32;
+        "default.clock.max-quantum" = 8192;
+        "core.daemon" = true;
+        "core.realtime" = true;
+      };
+    };
+
+    extraConfig.pipewire-pulse = {
+      "context.properties" = {
+        "log.level" = 2;
+      };
+      "context.modules" = [
+        {
+          name = "libpipewire-module-protocol-pulse";
+          args = {
+            "pulse.min.req" = "32/48000";
+            "pulse.default.req" = "256/48000";
+            "pulse.max.req" = "8192/48000";
+            "pulse.min.quantum" = "32/48000";
+            "pulse.max.quantum" = "8192/48000";
+            "pulse.suspend-timeout" = 5;
+          };
+        }
+      ];
+    };
+
+    extraConfig.pipewire."20-playback-split.conf" = {
+      "context.modules" = [
+        {
           name = "libpipewire-module-loopback";
           args = {
             "node.description" = "Speakers";
@@ -34,8 +68,38 @@
               "node.passive" = true;
             };
           };
-        }];
+        }
+        {
+          name = "libpipewire-module-adapter";
+          args = {
+            "factory.name" = "support.null-audio-sink";
+            "node.name" = "game-audio-source";
+            "node.description" = "Game Audio Source";
+            "media.class" = "Audio/Source";
+            "audio.position" = [ "FL" "FR" ];
+          };
+        }
+      ];
+    };
+
+    extraConfig.pipewire."99-alsa-compat.conf" = {
+      "context.properties" = {
+        "alsa.support-audio-fallback" = true;
       };
+      "context.objects" = [{
+        factory = "adapter";
+        args = {
+          "factory.name" = "support.null-audio-sink";
+          "node.name" = "alsa-compatibility";
+          "media.class" = "Audio/Sink";
+          "audio.position" = [ "FL" "FR" ];
+        };
+      }];
     };
   };
+
+  services.udev.extraRules = ''
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="0c60", ATTRS{idProduct}=="002a", TAG+="uaccess", TAG+="udev-acl"
+      KERNEL=="hw:*", SUBSYSTEM=="sound", ATTRS{idVendor}=="0c60", ATTRS{idProduct}=="002a", TAG+="uaccess", GROUP="audio", MODE="0660"
+    # '';
 }
