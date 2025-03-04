@@ -5,7 +5,6 @@
       gaps_out = 24;
       border_size = 1;
       resize_on_border = false;
-      allow_tearing = true;
       layout = "dwindle";
       snap = {
         enabled = true;
@@ -13,7 +12,6 @@
         monitor_gap = 12;
       };
     };
-
     decoration = {
       rounding = 4;
       rounding_power = 4;
@@ -32,7 +30,6 @@
         passes = 3;
       };
     };
-
     input = {
       accel_profile = "adaptive";
     };
@@ -41,31 +38,21 @@
       preserve_split = true;
       smart_split = true;
     };
-
     master = {
       new_status = "master";
     };
-
     misc = {
       force_default_wallpaper = -1;
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
       vrr = 1;
-
     };
-
+    render = {
+      direct_scanout = "1";
+    };
     ecosystem = {
       no_donation_nag = true;
       no_update_news = true;
-    };
-
-    experimental = {
-      wide_color_gamut = true;
-      xx_color_management_v4 = true;
-    };
-
-    render = {
-      direct_scanout = 2;
     };
   };
 }

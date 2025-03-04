@@ -10,13 +10,13 @@
   home.pointerCursor = {
     name = "catppuccin-mocha-mauve-cursors";
     package = pkgs.catppuccin-cursors.mochaMauve;
-    size = 32;
+    size = 20;
     gtk = {
       enable = true;
     };
     hyprcursor = {
       enable = true;
-      size = 32;
+      size = 20;
     };
     x11 = {
       enable = true;
@@ -54,13 +54,10 @@
       package = pkgs.papirus-icon-theme;
     };
     gtk3.extraConfig = {
-      Settings = ''
-      '';
+      gtk-application-prefer-dark-theme = 1;
     };
     gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+      gtk-application-prefer-dark-theme = 1;
     };
   };
 }
