@@ -4,6 +4,11 @@
     yazi
   ];
 
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
   programs.regreet = {
     enable = true;
 
@@ -30,6 +35,10 @@
     };
   };
 
-  programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
+  programs.hyprlock = {
+    enable = true;
+  };
+  services.hypridle = {
+    enable = true;
+  };
 }

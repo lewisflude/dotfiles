@@ -122,16 +122,16 @@ in
       # match on "Yubico YubiKey"
       ##
 
-      # SUBSYSTEM=="hid",\
-      #  ACTION=="remove",\
-      #  ENV{HID_NAME}=="Yubico YubiKey FIDO",\
-      #  RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+      SUBSYSTEM=="hid",\
+       ACTION=="remove",\
+       ENV{HID_NAME}=="Yubico YubiKey OTP+FIDO+CCID",\
+       RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
 
-      # SUBSYSTEM=="hid",\
-      #  ACTION=="add",\
-      #  ENV{HID_NAME}=="Yubico YubiKey FIDO",\
-      #  RUN+="${pkgs.systemd}/bin/loginctl activate 1"
-      #  #RUN+="${lib.getBin pkgs.xorg.xset}/bin/xset dpms force on"
+      SUBSYSTEM=="hid",\
+       ACTION=="add",\
+       ENV{HID_NAME}=="Yubico YubiKey OTP+FIDO+CCID",\
+       RUN+="${pkgs.systemd}/bin/loginctl activate 1"
+       RUN+="${lib.getBin pkgs.xorg.xset}/bin/xset dpms force on"
     '';
 
     services.pcscd.enable = true;
@@ -143,7 +143,7 @@ in
         enable = true;
         settings = {
           cue = true;
-          debug = true;
+          debug = false;
           authFile = "/home/lewis/.config/Yubico/u2f_keys";
           origin = "pam://jupiter";
         };

@@ -16,22 +16,24 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true;
+    powerManagement.enable = false;
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
+    forceFullCompositionPipeline = true;
+    nvidiaPersistenced = true;
+    prime.sync.enable = false;
   };
 
-  boot.blacklistedKernelModules = [ "nouveau" ];
-
   environment.sessionVariables = {
-    "NIXOS_OZONE_WL" = 1;
+    "NIXOS_OZONE_WL" = "1";
     "LIBVA_DRIVER_NAME" = "nvidia";
     "__GLX_VENDOR_LIBRARY_NAME" = "nvidia";
     "NVD_BACKEND" = "nvidia-drm";
-    "__GL_GSYNC_ALLOWED" = 1;
-    "__GL_VRR_ALLOWED" = 1;
+    "__GL_GSYNC_ALLOWED" = "1";
+    "__GL_VRR_ALLOWED" = "1";
+    "WLR_NO_HARDWARE_CURSORS" = "1";
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];

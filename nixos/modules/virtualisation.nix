@@ -3,6 +3,13 @@
     docker = {
       enable = true;
       storageDriver = "zfs";
+      enableNvidia = true;
+      daemon = {
+        settings.features.cdi = true;
+      };
+      rootless.daemon = {
+        settings.features.cdi = true;
+      };
     };
 
     # virtualbox = {

@@ -3,6 +3,7 @@
     enable = true;
     hyprland.enable = true;
     overwrite.enable = true;
+    systemd.enable = true;
     theme = "catppuccin_mocha";
     layout = {
       "bar.layouts" = {
@@ -29,12 +30,6 @@
       menus.dashboard.shortcuts.left.shortcut1.command = "firefox";
       menus.dashboard.shortcuts.left.shortcut1.icon = "󰈹";
       menus.dashboard.shortcuts.left.shortcut1.tooltip = "Firefox";
-      menus.dashboard.shortcuts.left.shortcut2.command = "cider-2";
-      menus.dashboard.shortcuts.left.shortcut2.icon = "󰀵";
-      menus.dashboard.shortcuts.left.shortcut2.tooltip = "Cider (Apple Music)";
-      menus.dashboard.shortcuts.left.shortcut3.command = "vencord";
-      menus.dashboard.shortcuts.left.shortcut3.icon = "";
-      menus.dashboard.shortcuts.left.shortcut3.tooltip = "Vencord (Discord)";
       theme.bar.transparent = true;
       theme.font.name = "Iosevka";
       theme.font.size = "12pt";
