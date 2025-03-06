@@ -1,4 +1,3 @@
-{ ... }:
 {
   services.zfs = {
     autoSnapshot = {

@@ -1,4 +1,4 @@
-{ ... }: {
+{
   programs.hyprpanel = {
     enable = true;
     hyprland.enable = true;
@@ -25,14 +25,20 @@
         };
         weather.unit = "metric";
       };
-      menus.dashboard.directories.enabled = false;
-      menus.dashboard.stats.enable_gpu = true;
-      menus.dashboard.shortcuts.left.shortcut1.command = "firefox";
-      menus.dashboard.shortcuts.left.shortcut1.icon = "󰈹";
-      menus.dashboard.shortcuts.left.shortcut1.tooltip = "Firefox";
-      theme.bar.transparent = true;
-      theme.font.name = "Iosevka";
-      theme.font.size = "12pt";
+      menus.dashboard = {
+        directories.enabled = false;
+        stats.enable_gpu = true;
+        shortcuts.left.shortcut1 = {
+          command = "firefox";
+          icon = "󰈹";
+          tooltip = "Firefox";
+        };
+      };
+      theme = {
+        bar.transparent = true;
+        font.name = "Iosevka";
+        font.size = "12pt";
+      };
     };
   };
 }

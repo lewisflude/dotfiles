@@ -1,4 +1,4 @@
-{ ... }: {
+{
   wayland.windowManager.hyprland.settings = {
     monitor = [ "DP-1, 3440x1440@164.90, 0x0, 1, bitdepth, 10" ];
     windowrulev2 = [

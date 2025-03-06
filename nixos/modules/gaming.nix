@@ -6,14 +6,21 @@
     mangohud
     gamescope
   ];
-
-  programs.gamemode.enable = true;
-
-  programs.gamescope = {
-    enable = true;
-    capSysNice = false;
+  programs = {
+    gamemode.enable = true;
+    gamescope = {
+      enable = true;
+      capSysNice = false;
+    };
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      protontricks.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      extraCompatPackages = with pkgs; [ proton-ge-bin ];
+    };
   };
-
   services.ananicy = {
     enable = true;
     package = pkgs.ananicy-cpp;
@@ -24,14 +31,5 @@
         "nice" = -20;
       }
     ];
-  };
-
-
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
 }

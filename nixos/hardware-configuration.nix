@@ -6,27 +6,28 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "thunderbolt" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "thunderbolt" "usbhid" "usb_storage" "sd_mod" ];
+    initrd.kernelModules = [ ];
+    kernelModules = [ "kvm-intel" ];
+    extraModulePackages = [ ];
+  };
   hardware.cpu.intel.updateMicrocode = true;
   hardware.enableAllFirmware = true;
   powerManagement.cpuFreqGovernor = "performance";
-
-  fileSystems."/" = {
-    device = "npool/root";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" = {
-    device = "npool/home";
-    fsType = "zfs";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
+  fileSystems = {
+    "/" = {
+      device = "npool/root";
+      fsType = "zfs";
+    };
+    "/home" = {
+      device = "npool/home";
+      fsType = "zfs";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-label/BOOT";
+      fsType = "vfat";
+    };
   };
   swapDevices = [
     {

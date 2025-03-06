@@ -35,13 +35,14 @@
       edit = "sudo -e";
       update = "system-update";
     };
+    history = {
+      save = 10000;
+      size = 10000;
+      ignoreAllDups = true;
+      path = "${config.home.homeDirectory}/.zsh_history";
+      ignorePatterns = [ "rm *" "pkill *" "cp *" ];
+    };
 
-    history.save = 10000;
-
-    history.size = 10000;
-    history.ignoreAllDups = true;
-    history.path = "${config.home.homeDirectory}/.zsh_history";
-    history.ignorePatterns = [ "rm *" "pkill *" "cp *" ];
     plugins = [
       {
         # will source zsh-autosuggestions.plugin.zsh

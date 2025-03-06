@@ -1,43 +1,36 @@
 { pkgs, config, ... }: {
-  home.packages = with pkgs; [
-    magnetic-catppuccin-gtk
-    nwg-look
-    iosevka
-    nerd-fonts.iosevka
-    gtk4
-  ];
-
-  home.pointerCursor = {
-    name = "catppuccin-mocha-mauve-cursors";
-    package = pkgs.catppuccin-cursors.mochaMauve;
-    size = 20;
-    gtk = {
-      enable = true;
-    };
-    hyprcursor = {
-      enable = true;
+  home = {
+    packages = with pkgs; [
+      magnetic-catppuccin-gtk
+      nwg-look
+      iosevka
+      nerd-fonts.iosevka
+      gtk4
+    ];
+    pointerCursor = {
+      name = "catppuccin-mocha-mauve-cursors";
+      package = pkgs.catppuccin-cursors.mochaMauve;
       size = 20;
+      gtk = {
+        enable = true;
+      };
+      hyprcursor = {
+        enable = true;
+        size = 20;
+      };
+      x11 = {
+        enable = true;
+        defaultCursor = "left_ptr";
+      };
     };
-    x11 = {
-      enable = true;
-      defaultCursor = "left_ptr";
+    sessionVariables = {
+      WALLPAPER_DIR = "${config.home.homeDirectory}/wallpapers";
     };
   };
-
-  fonts.fontconfig.enable = true;
-
-  home.sessionVariables = {
-    WALLPAPER_DIR = "${config.home.homeDirectory}/wallpapers";
-    # XCURSOR_THEME = "catppuccin-mocha-mauve-cursors";
-    # XCURSOR_SIZE = 12;
-    # GTK_THEME = "Catppuccin-GTK-Dark";
-  };
-
   catppuccin = {
     flavor = "mocha";
     enable = true;
   };
-
   gtk = {
     enable = true;
     font = {
@@ -60,4 +53,5 @@
       gtk-application-prefer-dark-theme = 1;
     };
   };
+  fonts.fontconfig.enable = true;
 }

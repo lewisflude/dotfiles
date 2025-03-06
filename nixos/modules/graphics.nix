@@ -5,25 +5,27 @@
     vulkan-validation-layers
     vulkan-tools
   ];
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-    ];
-  };
-  hardware.nvidia-container-toolkit.enable = true;
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        nvidia-vaapi-driver
+      ];
+    };
+    nvidia-container-toolkit.enable = true;
 
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
-    forceFullCompositionPipeline = true;
-    nvidiaPersistenced = true;
-    prime.sync.enable = false;
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      forceFullCompositionPipeline = true;
+      nvidiaPersistenced = true;
+      prime.sync.enable = false;
+    };
   };
 
   environment.sessionVariables = {

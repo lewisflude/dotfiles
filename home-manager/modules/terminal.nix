@@ -39,42 +39,44 @@
     lazydocker
   ];
 
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    nix-direnv.enable = true;
-  };
+  programs = {
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
 
-  programs.ghostty = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      font-family = "Iosevka";
-      font-size = 12;
-      background-blur = true;
-      shell-integration = "zsh";
-      shell-integration-features = "cursor,sudo,title";
-      font-feature = "+calt,+liga,+dlig";
-      gtk-titlebar = true;
-      gtk-tabs-location = "top";
+    ghostty = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        font-family = "Iosevka";
+        font-size = 12;
+        background-blur = true;
+        shell-integration = "zsh";
+        shell-integration-features = "cursor,sudo,title";
+        font-feature = "+calt,+liga,+dlig";
+        gtk-titlebar = true;
+        gtk-tabs-location = "top";
+      };
     };
-  };
-  programs.zoxide = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-  programs.bat = {
-    enable = true;
-    config = {
-      italic-text = "always";
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
     };
-  };
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-  programs.ripgrep = {
-    enable = true;
+    bat = {
+      enable = true;
+      config = {
+        italic-text = "always";
+      };
+    };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+    ripgrep = {
+      enable = true;
+    };
   };
 }
 
