@@ -10,13 +10,13 @@
     pointerCursor = {
       name = "catppuccin-mocha-mauve-cursors";
       package = pkgs.catppuccin-cursors.mochaMauve;
-      size = 24;
+      size = 32;
       gtk = {
         enable = true;
       };
       hyprcursor = {
         enable = true;
-        size = 24;
+        size = 32;
       };
       x11 = {
         enable = true;
@@ -45,6 +45,11 @@
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
+    };
+    cursorTheme = {
+      name = "catppuccin-mocha-mauve-cursors";
+      package = pkgs.catppuccin-cursors.mochaMauve;
+      size = 32;
     };
   };
   fonts.fontconfig.enable = true;
