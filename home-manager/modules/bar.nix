@@ -3,7 +3,6 @@
     enable = true;
     hyprland.enable = true;
     overwrite.enable = true;
-    systemd.enable = true;
     theme = "catppuccin_mocha";
     layout = {
       "bar.layouts" = {
