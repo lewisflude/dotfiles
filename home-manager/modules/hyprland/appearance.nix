@@ -12,6 +12,9 @@
         monitor_gap = 12;
       };
     };
+    xwayland = {
+      force_zero_scaling = true;
+    };
     decoration = {
       rounding = 4;
       rounding_power = 4;

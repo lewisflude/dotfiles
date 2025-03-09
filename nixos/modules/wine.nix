@@ -2,10 +2,9 @@
 
   environment.systemPackages = with pkgs; [
     winetricks
-    (wineWowPackages.waylandFull.override {
-      wineRelease = "staging";
-      mingwSupport = true;
-    })
+    (wineWowPackages.staging.override
+      { waylandSupport = true; }
+    )
     protontricks
   ];
 }

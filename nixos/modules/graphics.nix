@@ -36,6 +36,7 @@
     "__GL_GSYNC_ALLOWED" = "1";
     "__GL_VRR_ALLOWED" = "1";
     "WLR_NO_HARDWARE_CURSORS" = "1";
+    "GDK_SCALE" = "1";
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];

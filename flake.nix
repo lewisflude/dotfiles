@@ -29,6 +29,10 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+    protontweaks = {
+      url = "github:rain-cafe/protontweaks/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     musnix = { url = "github:musnix/musnix"; };
   };
   outputs =
@@ -37,6 +41,8 @@
     , home-manager
     , catppuccin
     , hyprpanel
+    , protontweaks
+    , musnix
     , ...
     } @ inputs:
     let
@@ -52,7 +58,18 @@
           modules = [
             ./nixos/configuration.nix
             catppuccin.nixosModules.catppuccin
-            inputs.musnix.nixosModules.musnix
+            musnix.nixosModules.musnix
+            ({ pkgs, ... }: {
+              imports = [
+                protontweaks.nixosModules.protontweaks
+              ];
+
+              nixpkgs = {
+                overlays = [
+                  inputs.protontweaks.overlay
+                ];
+              };
+            })
           ];
         };
       };
@@ -61,10 +78,11 @@
           pkgs = import nixpkgs {
             inherit system;
             overlays = [
-              inputs.hyprpanel.overlay
+              hyprpanel.overlay
               (final: prev: {
                 ghostty = inputs.ghostty.packages.${system}.default;
               })
+              protontweaks.overlay
             ];
           };
           extraSpecialArgs = { inherit inputs outputs; };
