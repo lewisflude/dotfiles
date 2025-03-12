@@ -10,6 +10,7 @@
     vscode
     nodePackages.eslint
     nodePackages.prettier
+    claude-code
   ];
   programs.helix = {
     enable = true;

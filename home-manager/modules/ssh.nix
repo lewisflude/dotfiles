@@ -21,6 +21,7 @@ in
     controlPersist = "10m";
     extraConfig = ''
       AddKeysToAgent yes
+      
     '';
 
     matchBlocks = {
@@ -32,7 +33,15 @@ in
           "~/.ssh/id_yubi"
         ];
       };
+      "raspberry-pi" = {
+        hostname = "192.168.1.10";
+        user = "lewisflude";
+        extraOptions = {
+          "SetEnv" = "TERM=xterm-256color";
+        };
+      };
     };
+
   };
 
   home.file = {

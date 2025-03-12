@@ -37,6 +37,7 @@
     git-extras
     lazygit
     lazydocker
+    zellij
   ];
 
   programs = {
@@ -58,6 +59,7 @@
         font-feature = "+calt,+liga,+dlig";
         gtk-titlebar = true;
         gtk-tabs-location = "top";
+        window-decoration = "server";
       };
     };
     zoxide = {

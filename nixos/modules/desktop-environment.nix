@@ -33,7 +33,7 @@
       enable = true;
     };
   };
-  services.hypridle = {
-    enable = true;
+  services = {
+    hypridle.enable = true;
   };
 }

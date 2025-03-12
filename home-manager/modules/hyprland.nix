@@ -9,6 +9,7 @@
     wl-clipboard
     brightnessctl
     dconf
+    nwg-drawer
   ];
 
   imports = [
@@ -20,8 +21,7 @@
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     systemd = {
-      variables = [ "--all" ];
-      enableXdgAutostart = true;
+      enable = false;
     };
     xwayland.enable = true;
     plugins = [
