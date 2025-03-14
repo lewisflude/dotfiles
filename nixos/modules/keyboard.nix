@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
+  services.udev.packages = with pkgs; [
     vial
     via
   ];
