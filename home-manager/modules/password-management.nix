@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
+  services.gnome-keyring.enable = true;
   home.packages = with pkgs; [
-    _1password-cli
-    _1password-gui
+    gcr
   ];
 }

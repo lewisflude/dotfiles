@@ -86,6 +86,7 @@ in
       pam_u2f
       yubikey-up
       yubikey-down
+      yubioath-flutter
     ];
 
 
@@ -152,12 +153,38 @@ in
           origin = "pam://jupiter";
         };
       };
+      yubico = {
+        enable = true;
+        debug = false;
+        mode = "challenge-response";
+        id = [ "30043632" ];
+      };
       sshAgentAuth.enable = true;
       services = {
-        login.u2fAuth = true;
+        login = {
+          u2fAuth = true;
+          enableGnomeKeyring = true;
+        };
         sudo = {
           u2fAuth = true;
           sshAgentAuth = true;
+          enableGnomeKeyring = true;
+        };
+        greetd = {
+          u2fAuth = true;
+          enableGnomeKeyring = true;
+        };
+
+        hyprlock = {
+          u2fAuth = true;
+        };
+
+        sshd = {
+          u2fAuth = true;
+        };
+
+        polkit-1 = {
+          u2fAuth = true;
         };
       };
     };
