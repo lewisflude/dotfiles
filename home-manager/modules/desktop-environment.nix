@@ -7,17 +7,13 @@
   home.packages = with pkgs; [
     fuzzel
     mako
+    grim
+    slurp
   ];
   programs = {
 
     hyprlock = {
       enable = true;
-      extraConfig = "source=${
-        builtins.fetchurl {
-          url = "https://raw.githubusercontent.com/catppuccin/hyprlock/refs/heads/main/hyprlock.conf";
-          sha256 = "1w02cnmi2ikrsnhq7raf0cvnsg0rv9nvaym19xhgbca4j03g0rbx";
-        }
-      }";
     };
 
     fuzzel = {
@@ -81,7 +77,7 @@
       enable = true;
       settings = {
         general = {
-          lock_cmd = "pidof hyprlock || hyprlock";
+          lock_cmd = "pidof hyprlock ||hyprlock";
           before_sleep_cmd = "loginctl lock-session";
           after_sleep_cmd = "hyprctl dispatch dpms on";
         };
@@ -100,12 +96,12 @@
           }
 
           {
-            timeout = 300;
+            timeout = 600;
             on-timeout = "loginctl lock-session";
           }
 
           {
-            timeout = 330;
+            timeout = 1200;
             on-timeout = "hyprctl dispatch dpms off";
             on-resume = "hyprctl dispatch dpms on";
           }

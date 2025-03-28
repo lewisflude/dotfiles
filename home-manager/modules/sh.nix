@@ -31,6 +31,7 @@
       l = "ls -l";
       la = "ls -a";
       lla = "ls -la";
+      cd = "z";
       lt = "ls --tree";
       edit = "sudo -e";
       update = "system-update";

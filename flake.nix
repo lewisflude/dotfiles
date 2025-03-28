@@ -6,7 +6,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
@@ -29,10 +31,6 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
-    protontweaks = {
-      url = "github:rain-cafe/protontweaks/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     musnix = { url = "github:musnix/musnix"; };
   };
   outputs =
@@ -41,7 +39,6 @@
     , home-manager
     , catppuccin
     , hyprpanel
-    , protontweaks
     , musnix
     , ...
     } @ inputs:
@@ -59,17 +56,7 @@
             ./nixos/configuration.nix
             catppuccin.nixosModules.catppuccin
             musnix.nixosModules.musnix
-            ({ pkgs, ... }: {
-              imports = [
-                protontweaks.nixosModules.protontweaks
-              ];
 
-              nixpkgs = {
-                overlays = [
-                  inputs.protontweaks.overlay
-                ];
-              };
-            })
           ];
         };
       };
@@ -82,7 +69,6 @@
               (final: prev: {
                 ghostty = inputs.ghostty.packages.${system}.default;
               })
-              protontweaks.overlay
             ];
           };
           extraSpecialArgs = { inherit inputs outputs; };

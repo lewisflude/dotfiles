@@ -24,7 +24,6 @@
       package = config.boot.kernelPackages.nvidiaPackages.beta;
       forceFullCompositionPipeline = true;
       nvidiaPersistenced = true;
-      prime.sync.enable = false;
     };
   };
 
@@ -37,6 +36,7 @@
     "__GL_VRR_ALLOWED" = "1";
     "WLR_NO_HARDWARE_CURSORS" = "1";
     "GDK_SCALE" = "1";
+    "ELECTRON_OZONE_PLATFORM_HINT" = "auto";
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];

@@ -6,6 +6,8 @@
     wget
     curl
     comma
+    rar
+    p7zip
     devenv
     direnv
     ghostty

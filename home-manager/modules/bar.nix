@@ -1,7 +1,8 @@
 {
   programs.hyprpanel = {
     enable = true;
-    hyprland.enable = true;
+    hyprland.enable = false;
+    systemd.enable = true;
     overwrite.enable = true;
     theme = "catppuccin_mocha";
     layout = {

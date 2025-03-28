@@ -6,6 +6,7 @@
       "uwsm app -- clipse -listen"
     ];
     exec-once = [
+      "uwsm app -- hyprpanel"
       "systemctl --user enable --now hypridle.service"
       "systemctl --user enable --now hyprpolkitagent.service"
       "pw-link \'Main-Output-Proxy:monitor_FL\' \'alsa_output.usb-Apogee_Electronics_Corp_Symphony_Desktop-00.pro-output-0:playback_AUX0\'"

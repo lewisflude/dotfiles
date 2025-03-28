@@ -20,9 +20,8 @@
         "$mod SHIFT, S, movetoworkspace, special:magic"
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
-        "$mod, Print, exec, hyprshot -m window"
-        ", Print, exec, hyprshot -m region --clipboard-only"
-        "$mod SHIFT, Print, exec, hyprshot -m region --clipboard-only"
+        ", Print, exec, grim"
+        "$mod, Print, exec, grim -g \"$(slurp)\""
       ]
       ++ (
         # workspaces

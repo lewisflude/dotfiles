@@ -1,10 +1,9 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    steam
     lutris
-    protonup-qt
     mangohud
     gamescope
+    steamtinkerlaunch
   ];
   programs = {
     gamemode.enable = true;
@@ -18,6 +17,7 @@
       protontricks.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
+      extraCompatPackages = with pkgs; [ proton-ge-bin ];
     };
   };
   services = {
@@ -32,6 +32,5 @@
         }
       ];
     };
-    protontweaks.enable = true;
   };
 }
