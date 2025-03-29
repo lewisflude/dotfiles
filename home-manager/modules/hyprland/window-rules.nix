@@ -1,16 +1,17 @@
 {
   wayland.windowManager.hyprland.settings = {
     monitor = [ "DP-1, 3440x1440@164.90, 0x0, 1, bitdepth, 10, vrr, 1" ];
-    windowrulev2 = [
+    windowrule = [
       "float,class:(clipse)"
       "size 622 652,class:(clipse)"
       "float,class:(pavucontrol|nm-connection-editor|1Password)"
-      "fullscreen,class:^steam_app\d+$"
-      "monitor 1,class:^steam_app_\d+$"
-      "workspace 10,class:^steam_app_\d+$"
+      "workspace special:gaming,class:^(steam_app_).*$"
+      "workspace special:gaming,title:^(Steam).*$"
+      "workspace special:gaming,class:^(gamescope).*$"
+      "workspace special:gaming,class:^(lutris)$"
     ];
     workspace = [
-      "10, border:false, rounding:false"
+      "special:gaming, rounding:false, blur:false, animation:false"
     ];
   };
 }

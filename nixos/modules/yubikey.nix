@@ -81,12 +81,10 @@ in
 
     environment.systemPackages = with pkgs; [
       yubioath-flutter
-      yubikey-manager
       pinentry-curses
       pam_u2f
       yubikey-up
       yubikey-down
-      yubioath-flutter
     ];
 
 
@@ -105,27 +103,6 @@ in
         # Yubikey 5 HID_NAME uses "YubiKey" whereas Yubikey 4 uses "Yubikey", so matching on "Yubi" works for both
         SUBSYSTEM=="hid", ACTION=="remove", ENV{HID_NAME}=="Yubico Yubi*", RUN+="${lib.getBin yubikey-down}/bin/yubikey-down"
 
-        ##
-        # Yubikey 4
-        ##
-
-        # Lock the device if you remove the yubikey (use udevadm monitor -p to debug)
-        # #ENV{ID_MODEL_ID}=="0407", # This doesn't match all the newer keys
-        # script that does smarter checks
-        # ACTION=="remove",\
-        #  ENV{ID_BUS}=="usb",\
-        #  ENV{ID_VENDOR_ID}=="1050",\
-        #  ENV{ID_VENDOR}=="Yubico",\
-        #  RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
-
-        ##
-        # Yubikey 5 BIO
-        #
-        # NOTE: The remove event for the bio doesn't include the ID_VENDOR_ID for some reason, but we can use the
-        # hid name instead. Some HID_NAME might be "Yubico YubiKey OTP+FIDO+CCID" or "Yubico YubiKey FIDO", etc so just
-        # match on "Yubico YubiKey"
-        ##
-
         SUBSYSTEM=="hid",\
          ACTION=="remove",\
          ENV{HID_NAME}=="Yubico YubiKey OTP+FIDO+CCID",\
@@ -134,7 +111,7 @@ in
         SUBSYSTEM=="hid",\
          ACTION=="add",\
          ENV{HID_NAME}=="Yubico YubiKey OTP+FIDO+CCID",\
-         RUN+="${pkgs.systemd}/bin/loginctl activate 1"
+         RUN+="${pkgs.systemd}/bin/loginctl activate 1";\
          RUN+="${lib.getBin pkgs.xorg.xset}/bin/xset dpms force on"
       '';
 
@@ -142,6 +119,10 @@ in
       udev.packages = [ pkgs.yubikey-personalization ];
       yubikey-agent.enable = true;
     };
+
+    security.sudo.extraConfig = ''
+      Defaults        timestamp_timeout=30
+    '';
 
     security.pam = {
       u2f = {

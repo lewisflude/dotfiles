@@ -34,7 +34,11 @@
       };
     };
     input = {
-      accel_profile = "adaptive";
+      sensitivity = 0.0;
+      accel_profile = "flat";
+      force_no_accel = true;
+      scroll_method = "on_button_down";
+      scroll_button = 274;
     };
     dwindle = {
       pseudotile = true;

@@ -78,7 +78,7 @@
         "prettier.singleQuote" = true;
         "prettier.tabWidth" = 2;
         "editor.codeActionsOnSave" = {
-          "source.fixAll.eslint" = true;
+          "source.fixAll.eslint" = "always";
         };
         "eslint.validate" = [
           "javascript"

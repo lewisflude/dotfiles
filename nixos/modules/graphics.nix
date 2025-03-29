@@ -4,6 +4,8 @@
     vulkan-loader
     vulkan-validation-layers
     vulkan-tools
+    libinput
+    evtest
   ];
   hardware = {
     graphics = {
@@ -39,5 +41,17 @@
     "ELECTRON_OZONE_PLATFORM_HINT" = "auto";
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services = {
+    xserver = {
+      videoDrivers = [ "nvidia" ];
+    };
+    libinput = {
+      enable = true;
+      mouse = {
+        accelProfile = "flat";
+        accelSpeed = 0;
+        middleEmulation = false;
+      };
+    };
+  };
 }

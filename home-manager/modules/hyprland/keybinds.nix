@@ -17,6 +17,7 @@
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
         "$mod, S, togglespecialworkspace, magic"
+        "$mod, G, togglespecialworkspace, gaming"
         "$mod SHIFT, S, movetoworkspace, special:magic"
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"

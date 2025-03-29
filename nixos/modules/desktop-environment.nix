@@ -23,9 +23,17 @@
         package = pkgs.catppuccin-cursors.mochaMauve;
       };
       settings = {
+        background = {
+          path = "/home/lewis/wallpapers/nurburgring.png";
+          fit = "Contain";
+        };
         commands = {
           reboot = [ "systemctl" "reboot" ];
           poweroff = [ "systemctl" "poweroff" ];
+        };
+        widget.clock = {
+          format = "%a %H:%M";
+          resolution = "500ms";
         };
       };
     };
